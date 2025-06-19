@@ -22,13 +22,12 @@ function Countries(){
 
     }
     const [countries,setCountries] =useState([]);
-    const API_ENDPOINT = "https://countries-search-data-prod-812920491762.asia-south1.run.app/countries"
+    const API_ENDPOINT = "https://xcountries-backend.azurewebsites.net/all"
     useEffect(()=>{
         fetch(API_ENDPOINT)
         .then((response)=> response.json())
         .then((data)=> setCountries(data))
         .catch((e)=>{
-            console.log("error occured");
             console.error("Error fetching data:",e)
         });
     },[]);
@@ -40,7 +39,7 @@ function Countries(){
             height:"100vh",
             flexWrap:"wrap"
         }}>
-        {countries.map((country)=><Card key={country.common} flagUrl={country.png} countryName={country.common}/>)}
+        {countries.map((country)=><Card key={Math.random(1)} flagUrl={country.flag} countryName={country.name}/>)}
         
         </div>
     )
